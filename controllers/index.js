@@ -1,8 +1,12 @@
 const Vehicle = require('../models/vehicle')
 
-const doThing = async (req, res) => {
+const createVehicle = async (req, res) => {
   try {
-    //things doThing will do
+    const vehicle = await new Vehicle(req.body)
+    await vehicle.save()
+    return res.status(201).json({
+      vehicle
+    })
   } catch (error) {
     return res.status(500).json({ error: error.message })
   }
@@ -16,6 +20,6 @@ const doOtherThing = async (req, res) => {
 }
 
 module.exports = {
-  doThing,
+  createVehicle,
   doOtherThing
 }
