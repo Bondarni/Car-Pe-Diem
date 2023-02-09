@@ -1,4 +1,4 @@
-const NewSchema = require('../models/schemaTemplate')
+const Vehicle = require('../models/vehicle')
 
 const doThing = async (req, res) => {
   try {
