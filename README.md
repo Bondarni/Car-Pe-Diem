@@ -20,9 +20,9 @@ Vehicles searching for a grade-A driver will enter their information, mileage, a
 # Technologies Used:
 
 - FRONT END
-React.Js and Express for client-side interfacing | CSS and Adobe Rush for Styling
+React.Js for client-side interfacing | CSS and Adobe Rush for Styling
 - BACK END
-MongoDB for server-side data management
+MongoDB and Express for server-side data management
 
 ---
 
