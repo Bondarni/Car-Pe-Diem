@@ -13,6 +13,30 @@ const createReview = async (req, res) => {
   }
 }
 
+const updateVehicle = async (req, res) => {
+  try {
+    const vehicle = await Vehicle.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    })
+    res.status(200).json(vehicle)
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const deleteVehicle = async (req, res) => {
+  try {
+    const { id } = req.params
+    const deleted = await Vehicle.findByIdAndDelete(id)
+    if (deleted) {
+      return res.status(200).send('Vehicle Scrapped')
+    }
+    throw new Error('Vehicle not found')
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 const createVehicle = async (req, res) => {
   try {
     const vehicle = await new Vehicle(req.body)
@@ -37,5 +61,7 @@ const getAllVehicles = async (req, res) => {
 module.exports = {
   createVehicle,
   createReview,
-  getAllVehicles
+  getAllVehicles,
+  updateVehicle,
+  deleteVehicle
 }

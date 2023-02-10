@@ -7,5 +7,7 @@ router.get('/', (req, res) => res.send('Root Page'))
 router.post('/vehicle', controllers.createVehicle)
 router.get('/vehicle', controllers.getAllVehicles)
 router.post('/review', controllers.createReview)
+router.put('/vehicle/:id', controllers.updateVehicle)
+router.delete('/vehicle/:id', controllers.deleteVehicle)
 
 module.exports = router
