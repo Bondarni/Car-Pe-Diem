@@ -1,27 +1,36 @@
 import './App.css'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import Form from './components/Form'
+import { Routes, Route } from 'react-router-dom'
+import Vehicle from './components/Vehicle'
+import Home from './components/Home'
 
 const App = () => {
-  const [thing, setThing] = useState('')
+  const [vehicles, setVehicles] = useState([])
 
-  const getThing = async () => {
+  const getVehicles = async () => {
     try {
-      let res = await axios.get('http://localhost:3001/<thing>')
-      setThing(res.data)
+      let res = await axios.get('http://localhost:3001/api/vehicle')
+      setVehicles(res.data.vehicles)
     } catch (error) {
-      console.log(err)
+      console.log(error)
     }
   }
 
   useEffect(() => {
-    getThing()
+    getVehicles()
   }, [])
 
   return (
     <div className="App">
-      <Form />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/vehicle" element={<Vehicle vehicles={vehicles} />} />
+        {/* <Route
+          path="/Vehicle/:id"
+          element={<VehicleDetails vehicles={vehicles} />}
+        /> */}
+      </Routes>
     </div>
   )
 }
