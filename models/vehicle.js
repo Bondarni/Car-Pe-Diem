@@ -11,7 +11,7 @@ const Vehicle = new Schema(
     color: { type: String, required: true },
     mileage: { type: Number, required: true },
     fuel: { type: String, required: true },
-    features: { type: String, required: true }
+    features: [{ type: String, required: true }]
   },
   { timestamps: true }
 )
