@@ -9,7 +9,9 @@ const Nav = () => {
         <br></br>
         <NavLink to="/vehicle">Vehicles</NavLink>
         <br></br>
-        {/* <NavLink to="/review">Add Review</NavLink> */}
+        <NavLink to="/vehicle/newvehicle">Add New Vehicle</NavLink>
+        <br></br>
+        <NavLink to="/newreview">Add Review</NavLink>
       </div>
     </nav>
   )

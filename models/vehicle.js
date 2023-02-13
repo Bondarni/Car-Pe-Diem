@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const Vehicle = new Schema(
   {
-    imageURL: { type: String, required: true },
+    imageURL: { type: String, required: false },
     name: { type: String, required: true },
     year: { type: Number, required: true },
     make: { type: String, required: true },

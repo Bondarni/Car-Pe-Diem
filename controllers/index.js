@@ -58,10 +58,30 @@ const getAllVehicles = async (req, res) => {
   }
 }
 
+const getAllReviews = async (req, res) => {
+  try {
+    const reviews = await Review.find()
+    return res.status(200).json({ reviews })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const getVehicleById = async (req, res) => {
+  try {
+    const vehicles = await Vehicle.findById()
+    return res.status(200).json({ vehicles })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
   createVehicle,
   createReview,
   getAllVehicles,
   updateVehicle,
-  deleteVehicle
+  deleteVehicle,
+  getVehicleById,
+  getAllReviews
 }

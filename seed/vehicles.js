@@ -34,8 +34,7 @@ const main = async () => {
         'The teenager you bought it last left anime stickers on the window, so no one will think you are too old to drive.'
     },
     {
-      imageURL:
-        'https://static.wikia.nocookie.net/roadwarrior/images/8/84/Car-madmax-31fa.jpg/revision/latest/scale-to-width-down/1000?cb=20150527124452',
+      imageURL: '',
       name: 'The Gigahorse',
       year: 1959,
       make: 'Cadillac',
