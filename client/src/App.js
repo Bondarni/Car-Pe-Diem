@@ -11,7 +11,6 @@ import NewReview from './components/NewReview'
 
 const App = () => {
   const [vehicles, setVehicles] = useState([])
-  const [reviews, setReviews] = useState([])
 
   const getVehicles = async () => {
     try {
@@ -21,18 +20,9 @@ const App = () => {
       console.log(error)
     }
   }
-  const getReviews = async () => {
-    try {
-      let res = await axios.get('http://localhost:3001/api/review')
-      setReviews(res.data.reviews)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   useEffect(() => {
     getVehicles()
-    getReviews()
   }, [])
 
   return (
@@ -44,17 +34,14 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/vehicle" element={<Vehicle vehicles={vehicles} />} />
         <Route
-          path="/vehicle/:id}"
+          path="/vehicle/:id/:index"
           element={<VehicleDeets vehicles={vehicles} />}
         />
         <Route
           path="/vehicle/newvehicle"
           element={<NewVehicle vehicles={vehicles} setVehicles={setVehicles} />}
         />
-        <Route
-          path="/newreview"
-          element={<NewReview reviews={reviews} setReviews={setReviews} />}
-        />
+        <Route path="/newreview" element={<NewReview />} />
       </Routes>
     </div>
   )

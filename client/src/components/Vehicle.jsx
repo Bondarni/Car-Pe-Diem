@@ -4,8 +4,8 @@ const Vehicle = ({ vehicles, getVehicleDeets }) => {
   return (
     <div>
       <Link to="/vehicle/newvehicle">Add New Vehicle</Link>
-      {vehicles.map((vehicle) => (
-        <Link to={`/vehicle/${vehicle._id}`} key={vehicle._id}>
+      {vehicles.map((vehicle, index) => (
+        <Link to={`/vehicle/${vehicle._id}/${index}`} key={vehicle._id}>
           <img src={vehicle.imageURL} alt={vehicle.name} className="carpic" />
           <h3>{vehicle.name}</h3>
           <Link>Delete Vehicle</Link>
