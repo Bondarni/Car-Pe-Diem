@@ -4,14 +4,14 @@ const Schema = mongoose.Schema
 const Vehicle = new Schema(
   {
     imageURL: { type: String, required: false },
-    name: { type: String, required: true },
-    year: { type: Number, required: true },
-    make: { type: String, required: true },
-    model: { type: String, required: true },
-    color: { type: String, required: true },
-    mileage: { type: Number, required: true },
-    fuel: { type: String, required: true },
-    features: [{ type: String, required: true }]
+    name: { type: String, required: false },
+    year: { type: Number, required: false },
+    make: { type: String, required: false },
+    model: { type: String, required: false },
+    color: { type: String, required: false },
+    mileage: { type: Number, required: false },
+    fuel: { type: String, required: false },
+    features: [{ type: String, required: false }]
   },
   { timestamps: true }
 )

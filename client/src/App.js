@@ -41,7 +41,7 @@ const App = () => {
           path="/vehicle/newvehicle"
           element={<NewVehicle vehicles={vehicles} setVehicles={setVehicles} />}
         />
-        <Route path="/newreview" element={<NewReview />} />
+        <Route path="/newreview" element={<NewReview vehicles={vehicles} />} />
       </Routes>
     </div>
   )

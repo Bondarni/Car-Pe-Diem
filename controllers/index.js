@@ -18,7 +18,7 @@ const updateVehicle = async (req, res) => {
     const vehicle = await Vehicle.findByIdAndUpdate(req.params.id, req.body, {
       new: true
     })
-    res.status(200).json(vehicle)
+    res.status(200).json({ vehicle })
   } catch (error) {
     return res.status(500).json({ error: error.message })
   }
@@ -60,7 +60,7 @@ const getAllVehicles = async (req, res) => {
 
 const getAllReviews = async (req, res) => {
   try {
-    const reviews = await Review.find({ vehicleId: req.params.id })
+    const reviews = await Review.find({ vehicleId: req.params._id })
     return res.status(200).json({ reviews })
   } catch (error) {
     return res.status(500).json({ error: error.message })

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const Vehicle = ({ vehicles, getVehicleDeets }) => {
+const Vehicle = ({ vehicles }) => {
   return (
     <div>
       <Link to="/vehicle/newvehicle">Add New Vehicle</Link>
@@ -8,7 +8,6 @@ const Vehicle = ({ vehicles, getVehicleDeets }) => {
         <Link to={`/vehicle/${vehicle._id}/${index}`} key={vehicle._id}>
           <img src={vehicle.imageURL} alt={vehicle.name} className="carpic" />
           <h3>{vehicle.name}</h3>
-          <Link>Delete Vehicle</Link>
         </Link>
       ))}
     </div>

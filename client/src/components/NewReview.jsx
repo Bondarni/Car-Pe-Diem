@@ -1,9 +1,9 @@
+import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
-
-const NewReview = (props) => {
+const NewReview = ({ vehicles, setReviews, reviews }) => {
+  let { index } = useParams()
   const initialState = {
-    vehicleId: '',
     subject: '',
     body: '',
     rating: ''
@@ -16,24 +16,20 @@ const NewReview = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await axios.post('http://localhost:3001/api/review', formState)
-    let reviewArray = [...props.reviews]
+    await axios.post(
+      `http://localhost:3001/api/${vehicles[index]._id}/reviews`,
+      formState
+    )
+    let reviewArray = [...reviews]
     reviewArray.push(formState)
-    props.setReviews(reviewArray)
+    setReviews(reviewArray)
     setFormState(initialState)
   }
 
   return (
     <div>
-      <h1>Add A New Review</h1>
+      <h3>Add A New Review</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="vehicleId">Vehcile ID:</label>
-        <input
-          id="vehicleId"
-          type="text"
-          onChange={handleChange}
-          value={formState.vehicleId}
-        />
         <label htmlFor="subject">Subject:</label>
         <input
           id="subject"
