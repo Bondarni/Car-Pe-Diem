@@ -4,12 +4,13 @@ import axios from 'axios'
 const NewReview = ({ vehicles, setReviews, reviews }) => {
   let { index } = useParams()
   const initialState = {
+    vehicleId: `${vehicles[index]._id}`,
     subject: '',
     body: '',
     rating: ''
   }
-  const [formState, setFormState] = useState(initialState)
 
+  const [formState, setFormState] = useState(initialState)
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.id]: e.target.value })
   }
@@ -17,7 +18,7 @@ const NewReview = ({ vehicles, setReviews, reviews }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     await axios.post(
-      `http://localhost:3001/api/${vehicles[index]._id}/reviews`,
+      `http://localhost:3001/api/vehicle/${vehicles[index]._id}/reviews`,
       formState
     )
     let reviewArray = [...reviews]

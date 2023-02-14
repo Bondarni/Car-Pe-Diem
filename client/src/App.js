@@ -11,7 +11,6 @@ import NewReview from './components/NewReview'
 
 const App = () => {
   const [vehicles, setVehicles] = useState([])
-
   const getVehicles = async () => {
     try {
       let res = await axios.get('http://localhost:3001/api/vehicle')
@@ -41,7 +40,7 @@ const App = () => {
           path="/vehicle/newvehicle"
           element={<NewVehicle vehicles={vehicles} setVehicles={setVehicles} />}
         />
-        <Route path="/newreview" element={<NewReview vehicles={vehicles} />} />
+        <Route path="/newreview" element={<NewReview />} />
       </Routes>
     </div>
   )
