@@ -1,4 +1,4 @@
-const Reviews = ({ vehicles, reviews }) => {
+const Reviews = ({ vehicles, reviews, deleteReview }) => {
   return (
     <>
       {reviews ? (
@@ -9,6 +9,7 @@ const Reviews = ({ vehicles, reviews }) => {
               <div>{review.subject}</div>
               <div>{review.body}</div>
               <div>{review.rating}</div>
+              <button onClick={deleteReview}>Delete Review</button>
             </div>
           ))}
         </div>

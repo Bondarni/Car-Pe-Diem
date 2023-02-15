@@ -9,6 +9,7 @@ router.get('/vehicle', controllers.getAllVehicles)
 router.get('/vehicle/:id', controllers.getVehicleById)
 router.post('/vehicle/:id/reviews', controllers.createReview)
 router.get('/vehicle/:id/reviews', controllers.getAllReviews)
+router.delete('/vehicle/:id/reviews/:id', controllers.deleteReview)
 router.put('/vehicle/:id', controllers.updateVehicle)
 router.delete('/vehicle/:id', controllers.deleteVehicle)
 

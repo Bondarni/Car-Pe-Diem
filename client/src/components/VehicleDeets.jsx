@@ -7,6 +7,27 @@ import Reviews from './Reviews'
 const VehicleDeets = ({ vehicles }) => {
   const [reviews, setReviews] = useState()
 
+  const deleteVehicle = async () => {
+    try {
+      let res = await axios.delete(
+        `http://localhost:3001/api/vehicle/${vehicles[index]._id}`
+      )
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const deleteReview = async () => {
+    try {
+      let res = await axios.delete(
+        `http://localhost:3001/api/vehicle/${vehicles[index]._id}/reviews/${reviews[index]._id}`
+      )
+      setReviews(res.data.reviews)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const getReviews = async () => {
     try {
       let res = await axios.get(
@@ -40,6 +61,7 @@ const VehicleDeets = ({ vehicles }) => {
             vehicles={vehicles}
             VehicleDeets={VehicleDeets}
             reviews={reviews}
+            deleteReview={deleteReview}
           />
           <NewReview
             vehicles={vehicles}
