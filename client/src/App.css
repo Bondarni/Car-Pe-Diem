@@ -1,5 +1,14 @@
+body {
+  background-color: rgb(192, 192, 192);
+}
+
 .App {
   text-align: center;
+}
+
+.homepage {
+  margin-top: 20%;
+  font-size: xx-large;
 }
 
 .carpic {

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-const NewVehicle = (props) => {
+const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
   const initialState = {
     imageURL: '',
     name: '',
@@ -21,21 +21,25 @@ const NewVehicle = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await axios.post('http://localhost:3001/api/vehicle', formState)
-    let vehicleArray = [...props.vehicles]
-    vehicleArray.push(formState)
-    props.setVehicles(vehicleArray)
+    let response = await axios.post(
+      'http://localhost:3001/api/vehicle',
+      formState
+    )
+    let vehicleArray = [...vehicles]
+    vehicleArray.push(response.data.vehicle)
+    setVehicles(vehicleArray)
     setFormState(initialState)
   }
 
   return (
     <div>
-      <h1>Add A New Vehicle</h1>
+      <h3>Add A New Vehicle</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="imageURL">Image URL:</label>
         <input
           id="imageURL"
           type="text"
+          placeholder="thing"
           onChange={handleChange}
           value={formState.imageURL}
         />
@@ -43,6 +47,7 @@ const NewVehicle = (props) => {
         <input
           id="name"
           type="text"
+          placeholder="thing"
           onChange={handleChange}
           value={formState.name}
         />
@@ -50,6 +55,7 @@ const NewVehicle = (props) => {
         <input
           id="year"
           type="number"
+          placeholder="thing"
           onChange={handleChange}
           value={formState.year}
         />
@@ -57,6 +63,7 @@ const NewVehicle = (props) => {
         <input
           id="make"
           type="text"
+          placeholder="thing"
           onChange={handleChange}
           value={formState.make}
         />
@@ -64,6 +71,7 @@ const NewVehicle = (props) => {
         <input
           id="model"
           type="text"
+          placeholder="thing"
           onChange={handleChange}
           value={formState.model}
         />
@@ -71,6 +79,7 @@ const NewVehicle = (props) => {
         <input
           id="color"
           type="text"
+          placeholder="thing"
           onChange={handleChange}
           value={formState.color}
         />
@@ -78,6 +87,7 @@ const NewVehicle = (props) => {
         <input
           id="mileage"
           type="number"
+          placeholder="thing"
           onChange={handleChange}
           value={formState.mileage}
         />
@@ -85,6 +95,7 @@ const NewVehicle = (props) => {
         <input
           id="fuel"
           type="text"
+          placeholder="thing"
           onChange={handleChange}
           value={formState.fuel}
         />
@@ -92,10 +103,13 @@ const NewVehicle = (props) => {
         <input
           id="features"
           type="text"
+          placeholder="thing"
           onChange={handleChange}
           value={formState.features}
         />
-        <button type="submit">Add</button>
+        <button type="submit" onClick={getVehicles}>
+          Add
+        </button>
       </form>
     </div>
   )

@@ -1,44 +1,42 @@
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
-const Reviews = ({ reviews, getReviews, backHome }) => {
-  const navigate = useNavigate()
-  // const reBoot = () => {
-  //   navigate (`/vehicle/${id}/`)
-  // }
-
-  const deleteReview = async (vehicleId, reviewId) => {
+const Reviews = ({ reviews, setReviews }) => {
+  const deleteReview = async (vehicleId, reviewId, index) => {
     try {
-      let res = await axios.delete(
+      await axios.delete(
         `http://localhost:3001/api/vehicle/${vehicleId}/reviews/${reviewId}`
       )
-      // getReviews()
-      backHome()
+      let reviewsArray = [...reviews]
+      reviewsArray.splice(index, 1)
+      setReviews(reviewsArray)
     } catch (error) {
       console.log(error)
     }
   }
-  console.log(reviews)
+
   return (
     <>
-      {reviews ? (
+      {reviews.length ? (
         <div>
-          <div>Here are the reviews:</div>
+          <h3>Maintenace Log:</h3>
           {reviews?.map((review, index) => (
             <div key={index}>
-              <div>{review.subject}</div>
-              <div>{review.body}</div>
-              <div>{review.rating}</div>
+              <div>{review.part}</div>
+              <div>{review.description}</div>
+              <div>{review.shop}</div>
+              <div>{review.cost}</div>
               <button
-                onClick={() => deleteReview(review.vehicleId, review._id)}
+                onClick={() =>
+                  deleteReview(review.vehicleId, review._id, index)
+                }
               >
-                Delete Review
+                Delete Maintenace Record
               </button>
             </div>
           ))}
         </div>
       ) : (
-        <div>No Reviews Yet</div>
+        <div>No Records Yet</div>
       )}
     </>
   )

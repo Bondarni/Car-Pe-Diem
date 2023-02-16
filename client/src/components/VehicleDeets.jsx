@@ -1,14 +1,14 @@
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NewReview from './NewReview'
 import Reviews from './Reviews'
 import UpdateVehicle from './UpdateVehicle'
-
-const VehicleDeets = () => {
+import Nav from './Nav'
+const VehicleDeets = ({ backHome }) => {
   const [vehicles, setVehicles] = useState([])
-  const [reviews, setReviews] = useState()
-
+  const [reviews, setReviews] = useState([])
+  let { id, index } = useParams()
   const getVehicles = async () => {
     try {
       let res = await axios.get('http://localhost:3001/api/vehicle')
@@ -17,25 +17,21 @@ const VehicleDeets = () => {
       console.log(error)
     }
   }
-
-  let navigate = useNavigate()
-  let { id, index } = useParams()
-
-  const backHome = () => {
-    navigate('/vehicle')
-  }
-  const toUpdatePage = () => {
-    navigate(`/vehicle/${vehicles[index]._id}/${vehicles[index].index}`)
-  }
-  // const deleteReview = async () => {
-  //   try {
-  //     let res = await axios.delete(
-  //       `http://localhost:3001/api/vehicle/${id}/reviews/${reviewId}`
-  //     )
-  //     setReviews(res.data.reviews)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
+  // let vehicle = vehicles[index]
+  // const [isShowing, toggleShowing] = useState(false)
+  // const showUp = () => toggleShowing(true)
+  // const goAway = () => toggleShowing(false)
+  // let updateSection
+  // if (isShowing) {
+  //   updateSection = (
+  //     <UpdateVehicle
+  //       vehicle={vehicle}
+  //       setVehicles={setVehicles}
+  //       goAway={goAway}
+  //     />
+  //   )
+  // } else {
+  //   updateSection = <button onClick={showUp}>Update</button>
   // }
 
   const deleteVehicle = async () => {
@@ -44,6 +40,7 @@ const VehicleDeets = () => {
         `http://localhost:3001/api/vehicle/${vehicles[index]._id}`
       )
       setVehicles(res.data.vehicles)
+      alert('Vehicle Scrapped')
       backHome()
     } catch (error) {
       console.log(error)
@@ -68,6 +65,7 @@ const VehicleDeets = () => {
 
   return (
     <>
+      <Nav />
       {vehicles.length ? (
         <div>
           <img src={vehicles[index].imageURL} alt={vehicles[index].name} />
@@ -81,13 +79,10 @@ const VehicleDeets = () => {
           <div>{vehicles[index].fuel}</div>
           <div>{vehicles[index].features}</div>
           <button onClick={deleteVehicle}>Scrap Vehicle</button>
-          <button onClick={toUpdatePage}>Update</button>
+          {/* {updateSection} */}
+          {/* <button onClick={showUp}>Update</button> */}
           <UpdateVehicle vehicle={vehicles[index]} getVehicles={getVehicles} />
-          <Reviews
-            reviews={reviews}
-            getReviews={getReviews}
-            backHome={backHome}
-          />
+          <Reviews reviews={reviews} setReviews={setReviews} />
           <NewReview
             vehicles={vehicles}
             reviews={reviews}

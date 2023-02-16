@@ -1,6 +1,8 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import NewVehicle from './NewVehicle'
+import Nav from './Nav'
 
 const Vehicle = () => {
   const [vehicles, setVehicles] = useState([])
@@ -18,6 +20,12 @@ const Vehicle = () => {
 
   return (
     <div>
+      <Nav />
+      <NewVehicle
+        vehicles={vehicles}
+        setVehicles={setVehicles}
+        getVehicles={getVehicles}
+      />
       {vehicles.map((vehicle, index) => (
         <Link to={`/vehicle/${vehicle._id}/${index}`} key={vehicle._id}>
           <img src={vehicle.imageURL} alt={vehicle.name} className="carpic" />

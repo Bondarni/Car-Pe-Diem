@@ -10,7 +10,7 @@ const UpdateVehicle = ({ vehicle, getVehicles }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await axios.put(
+    let res = await axios.put(
       `http://localhost:3001/api/vehicle/${vehicle._id}`,
       formState
     )
@@ -19,8 +19,7 @@ const UpdateVehicle = ({ vehicle, getVehicles }) => {
 
   return (
     <div>
-      update
-      <h1>Add A New Vehicle</h1>
+      <h3>Enter Updated Info Below:</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="imageURL">Image URL:</label>
         <input
