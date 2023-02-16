@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
-const NewReview = ({ vehicles, setReviews, reviews }) => {
+
+const NewReview = ({ vehicles, getReviews, reviews }) => {
   let { index } = useParams()
   const initialState = {
     vehicleId: `${vehicles[index]._id}`,
@@ -23,7 +24,7 @@ const NewReview = ({ vehicles, setReviews, reviews }) => {
     )
     let reviewArray = [...reviews]
     reviewArray.push(formState)
-    setReviews(reviewArray)
+    getReviews()
     setFormState(initialState)
   }
 

@@ -1,28 +1,50 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import NewReview from './NewReview'
 import Reviews from './Reviews'
+import UpdateVehicle from './UpdateVehicle'
 
-const VehicleDeets = ({ vehicles }) => {
+const VehicleDeets = () => {
+  const [vehicles, setVehicles] = useState([])
   const [reviews, setReviews] = useState()
+
+  const getVehicles = async () => {
+    try {
+      let res = await axios.get('http://localhost:3001/api/vehicle')
+      setVehicles(res.data.vehicles)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  let navigate = useNavigate()
+  let { id, index } = useParams()
+
+  const backHome = () => {
+    navigate('/vehicle')
+  }
+  const toUpdatePage = () => {
+    navigate(`/vehicle/${vehicles[index]._id}/${vehicles[index].index}`)
+  }
+  // const deleteReview = async () => {
+  //   try {
+  //     let res = await axios.delete(
+  //       `http://localhost:3001/api/vehicle/${id}/reviews/${reviewId}`
+  //     )
+  //     setReviews(res.data.reviews)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   const deleteVehicle = async () => {
     try {
       let res = await axios.delete(
         `http://localhost:3001/api/vehicle/${vehicles[index]._id}`
       )
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const deleteReview = async () => {
-    try {
-      let res = await axios.delete(
-        `http://localhost:3001/api/vehicle/${vehicles[index]._id}/reviews/${reviews[index]._id}`
-      )
-      setReviews(res.data.reviews)
+      setVehicles(res.data.vehicles)
+      backHome()
     } catch (error) {
       console.log(error)
     }
@@ -31,18 +53,19 @@ const VehicleDeets = ({ vehicles }) => {
   const getReviews = async () => {
     try {
       let res = await axios.get(
-        `http://localhost:3001/api/vehicle/${vehicles[index]._id}/reviews`
+        `http://localhost:3001/api/vehicle/${id}/reviews`
       )
       setReviews(res.data.reviews)
     } catch (error) {
       console.log(error)
     }
   }
+
   useEffect(() => {
     getReviews()
+    getVehicles()
   }, [])
 
-  let { index } = useParams()
   return (
     <>
       {vehicles.length ? (
@@ -57,20 +80,22 @@ const VehicleDeets = ({ vehicles }) => {
           <div>{vehicles[index].mileage}</div>
           <div>{vehicles[index].fuel}</div>
           <div>{vehicles[index].features}</div>
+          <button onClick={deleteVehicle}>Scrap Vehicle</button>
+          <button onClick={toUpdatePage}>Update</button>
+          <UpdateVehicle vehicle={vehicles[index]} getVehicles={getVehicles} />
           <Reviews
-            vehicles={vehicles}
-            VehicleDeets={VehicleDeets}
             reviews={reviews}
-            deleteReview={deleteReview}
+            getReviews={getReviews}
+            backHome={backHome}
           />
           <NewReview
             vehicles={vehicles}
             reviews={reviews}
-            setReviews={setReviews}
+            getReviews={getReviews}
           />
         </div>
       ) : (
-        <div>Loading...</div>
+        <div>Your Garage Is Empty</div>
       )}
     </>
   )

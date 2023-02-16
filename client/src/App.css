@@ -3,5 +3,8 @@
 }
 
 .carpic {
+  margin: 10%;
+  height: fit-content;
   width: fit-content;
+  max-width: 500px;
 }

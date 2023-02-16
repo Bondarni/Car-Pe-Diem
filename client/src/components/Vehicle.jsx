@@ -1,9 +1,23 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 
-const Vehicle = ({ vehicles }) => {
+const Vehicle = () => {
+  const [vehicles, setVehicles] = useState([])
+  const getVehicles = async () => {
+    try {
+      let res = await axios.get('http://localhost:3001/api/vehicle')
+      setVehicles(res.data.vehicles)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    getVehicles()
+  }, [])
+
   return (
     <div>
-      <Link to="/vehicle/newvehicle">Add New Vehicle</Link>
       {vehicles.map((vehicle, index) => (
         <Link to={`/vehicle/${vehicle._id}/${index}`} key={vehicle._id}>
           <img src={vehicle.imageURL} alt={vehicle.name} className="carpic" />

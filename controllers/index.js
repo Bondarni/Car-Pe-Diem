@@ -39,12 +39,12 @@ const deleteVehicle = async (req, res) => {
 
 const deleteReview = async (req, res) => {
   try {
-    const { id } = req.params
-    const deleted = await Review.findByIdAndDelete(id)
-    if (deleted) {
-      return res.status(200).send('Review Scrapped')
-    }
-    throw new Error('Review not found')
+    const { reviewId } = req.params
+    const deleted = await Review.findByIdAndDelete(reviewId)
+    // if (deleted) {
+    //   return res.status(200).send('Review Scrapped')
+    // }
+    // throw new Error('Review not found')
   } catch (error) {
     return res.status(500).json({ error: error.message })
   }

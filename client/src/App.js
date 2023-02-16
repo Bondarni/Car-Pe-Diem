@@ -8,22 +8,9 @@ import Nav from './components/Nav'
 import NewVehicle from './components/NewVehicle'
 import VehicleDeets from './components/VehicleDeets'
 import NewReview from './components/NewReview'
+import UpdateVehicle from './components/UpdateVehicle'
 
 const App = () => {
-  const [vehicles, setVehicles] = useState([])
-  const getVehicles = async () => {
-    try {
-      let res = await axios.get('http://localhost:3001/api/vehicle')
-      setVehicles(res.data.vehicles)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    getVehicles()
-  }, [])
-
   return (
     <div className="App">
       <header>
@@ -31,15 +18,10 @@ const App = () => {
       </header>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/vehicle" element={<Vehicle vehicles={vehicles} />} />
-        <Route
-          path="/vehicle/:id/:index"
-          element={<VehicleDeets vehicles={vehicles} />}
-        />
-        <Route
-          path="/vehicle/newvehicle"
-          element={<NewVehicle vehicles={vehicles} setVehicles={setVehicles} />}
-        />
+        <Route path="/vehicle" element={<Vehicle />} />
+        <Route path="/vehicle/:id/:index" element={<VehicleDeets />} />
+        <Route path="/vehicle/:id/:index/update" element={<UpdateVehicle />} />
+        <Route path="/vehicle/newvehicle" element={<NewVehicle />} />
         <Route path="/newreview" element={<NewReview />} />
       </Routes>
     </div>
