@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
+const NewVehicle = ({ vehicles, setVehicles, getVehicles, setNewThing }) => {
   const initialState = {
     imageURL: '',
     name: '',
@@ -29,6 +29,8 @@ const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
     vehicleArray.push(response.data.vehicle)
     setVehicles(vehicleArray)
     setFormState(initialState)
+    alert('Added new ride to your garage!')
+    setNewThing(true)
   }
 
   return (

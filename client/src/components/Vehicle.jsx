@@ -6,6 +6,7 @@ import Nav from './Nav'
 
 const Vehicle = () => {
   const [vehicles, setVehicles] = useState([])
+  const [newThing, setNewThing] = useState(false)
   const getVehicles = async () => {
     try {
       let res = await axios.get('http://localhost:3001/api/vehicle')
@@ -21,11 +22,22 @@ const Vehicle = () => {
   return (
     <div>
       <Nav />
-      <NewVehicle
+      {newThing ? (
+        <NewVehicle
+          vehicles={vehicles}
+          setVehicles={setVehicles}
+          getVehicles={getVehicles}
+          setNewThing={setNewThing}
+        />
+      ) : (
+        <button onClick={() => setNewThing(true)}>Add New Vehicle</button>
+      )}
+      <br></br>
+      {/* <NewVehicle
         vehicles={vehicles}
         setVehicles={setVehicles}
         getVehicles={getVehicles}
-      />
+      /> */}
       {vehicles.map((vehicle, index) => (
         <Link to={`/vehicle/${vehicle._id}/${index}`} key={vehicle._id}>
           <img src={vehicle.imageURL} alt={vehicle.name} className="carpic" />

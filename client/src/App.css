@@ -9,10 +9,7 @@ body {
   flex-direction: column;
 }
 
-/* div {
-  display: flex;
-  flex-direction: column;
-} */
+
 
 .App {
   background-color: rgba(255, 255, 255, 0.446);
@@ -51,6 +48,16 @@ h1, h2, h3 {
   align-content: center;
   margin: 20%, 0;
   padding: 2%, 0;
+}
+
+.aboutbody {
+  margin: 0 30%;
+}
+.frustrateddriver {
+  width: 300px;
+}
+.jubilantbiker {
+  width: 300px;
 }
 
 
