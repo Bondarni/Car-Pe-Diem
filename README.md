@@ -1,4 +1,4 @@
-# Rev-Rent OR Vroom-For-Two
+# Carportal / Car-Pe Diem!
 
 ## Date: 2/8/2023
 
@@ -11,24 +11,21 @@
 
 # **_Description_**
 
-A site that helps match the right driver to the right vehicle, and vice versa.
-
-Drivers looking for the right kind of wheels will first put in their information, driving history/habits, and music tastes.  A curated list of vehicles will then populate, from which they can select the perfect vehicle for them!
-
-Vehicles searching for a grade-A driver will enter their information, mileage, and music tastes.  A curated list of drivers will then populate, from which they can select the least worst driver out of the group!
+A site that helps vehicle owners keep track of the maintenance needed to keep their transportation going.
+Keeping it all in your head, retreiving scattered paper records, or depending on other shops to remember all your info is one way to do it. Another way is to have a database you can access at home and make adjustments as needed.
 
 # Technologies Used:
 
 - FRONT END
-React.Js for client-side interfacing | CSS and Adobe Rush for Styling
+  React.Js for client-side interfacing | CSS and Adobe Rush for Styling
 - BACK END
-MongoDB and Express for server-side data management
+  MongoDB and Express for server-side data management
 
 ---
 
 # Getting Started:
 
-1. Create the Schemas to be used for back end files, and use MongoDB to build the data structure. 
+1. Create the Schemas to be used for back end files, and use MongoDB to build the data structure.
 2. Create the Objects to be used to populate the front end, and use React.js and Express to build an easy and intuitive client navigation.
 3. Arrange intuitive and approachable page layouts with grid styling, clean text, and detailed photos.
 
@@ -40,7 +37,7 @@ Coming soon!
 
 # Checklist for Success
 
-[Trello Board](https://trello.com/b/JJiXzfAL/rev-rent-vroom-for-two) tracking project process.  Check back for updates!
+[Trello Board](https://trello.com/b/JJiXzfAL/rev-rent-vroom-for-two) tracking project process. Check back for updates!
 
 ---
 
