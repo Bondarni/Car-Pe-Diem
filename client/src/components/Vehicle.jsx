@@ -29,7 +29,7 @@ const Vehicle = () => {
       {vehicles.map((vehicle, index) => (
         <Link to={`/vehicle/${vehicle._id}/${index}`} key={vehicle._id}>
           <img src={vehicle.imageURL} alt={vehicle.name} className="carpic" />
-          <h3>{vehicle.name}</h3>
+          <h1>{vehicle.name}</h1>
         </Link>
       ))}
     </div>

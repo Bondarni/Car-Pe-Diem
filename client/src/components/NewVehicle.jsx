@@ -32,22 +32,22 @@ const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
   }
 
   return (
-    <div>
+    <div className="newvehiclesection">
       <h3>Add A New Vehicle</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="imageURL">Image URL:</label>
         <input
           id="imageURL"
           type="text"
-          placeholder="thing"
+          placeholder="yourcarimg.jpg"
           onChange={handleChange}
           value={formState.imageURL}
         />
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">Nickname:</label>
         <input
           id="name"
           type="text"
-          placeholder="thing"
+          placeholder="Gary"
           onChange={handleChange}
           value={formState.name}
         />
@@ -55,7 +55,7 @@ const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
         <input
           id="year"
           type="number"
-          placeholder="thing"
+          placeholder="2023"
           onChange={handleChange}
           value={formState.year}
         />
@@ -63,7 +63,7 @@ const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
         <input
           id="make"
           type="text"
-          placeholder="thing"
+          placeholder="Subaru"
           onChange={handleChange}
           value={formState.make}
         />
@@ -71,7 +71,7 @@ const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
         <input
           id="model"
           type="text"
-          placeholder="thing"
+          placeholder="Outback"
           onChange={handleChange}
           value={formState.model}
         />
@@ -79,7 +79,7 @@ const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
         <input
           id="color"
           type="text"
-          placeholder="thing"
+          placeholder="Grey"
           onChange={handleChange}
           value={formState.color}
         />
@@ -87,7 +87,7 @@ const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
         <input
           id="mileage"
           type="number"
-          placeholder="thing"
+          placeholder="10000"
           onChange={handleChange}
           value={formState.mileage}
         />
@@ -95,7 +95,7 @@ const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
         <input
           id="fuel"
           type="text"
-          placeholder="thing"
+          placeholder="Gas"
           onChange={handleChange}
           value={formState.fuel}
         />
@@ -103,12 +103,12 @@ const NewVehicle = ({ vehicles, setVehicles, getVehicles }) => {
         <input
           id="features"
           type="text"
-          placeholder="thing"
+          placeholder="Ejector Seats"
           onChange={handleChange}
           value={formState.features}
         />
         <button type="submit" onClick={getVehicles}>
-          Add
+          Add New Ride!
         </button>
       </form>
     </div>

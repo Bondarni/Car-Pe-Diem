@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-const UpdateVehicle = ({ vehicle, getVehicles }) => {
+const UpdateVehicle = ({ vehicle, getVehicles, setUpdates }) => {
   const [formState, setFormState] = useState(vehicle)
 
   const handleChange = (e) => {
@@ -14,6 +14,7 @@ const UpdateVehicle = ({ vehicle, getVehicles }) => {
       `http://localhost:3001/api/vehicle/${vehicle._id}`,
       formState
     )
+    setUpdates(false)
     getVehicles()
   }
 

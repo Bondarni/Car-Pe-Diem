@@ -17,22 +17,6 @@ const VehicleDeets = ({ backHome }) => {
       console.log(error)
     }
   }
-  // let vehicle = vehicles[index]
-  // const [isShowing, toggleShowing] = useState(false)
-  // const showUp = () => toggleShowing(true)
-  // const goAway = () => toggleShowing(false)
-  // let updateSection
-  // if (isShowing) {
-  //   updateSection = (
-  //     <UpdateVehicle
-  //       vehicle={vehicle}
-  //       setVehicles={setVehicles}
-  //       goAway={goAway}
-  //     />
-  //   )
-  // } else {
-  //   updateSection = <button onClick={showUp}>Update</button>
-  // }
 
   const deleteVehicle = async () => {
     try {
@@ -58,17 +42,23 @@ const VehicleDeets = ({ backHome }) => {
     }
   }
 
+  const [updates, setUpdates] = useState(false)
+
   useEffect(() => {
     getReviews()
     getVehicles()
   }, [])
 
   return (
-    <>
+    <div className="vehicledeetssection">
       <Nav />
       {vehicles.length ? (
         <div>
-          <img src={vehicles[index].imageURL} alt={vehicles[index].name} />
+          <img
+            className="carpic"
+            src={vehicles[index].imageURL}
+            alt={vehicles[index].name}
+          />
           <div>{vehicles[index].name}</div>
           <div>
             {vehicles[index].year} {vehicles[index].make}{' '}
@@ -79,9 +69,15 @@ const VehicleDeets = ({ backHome }) => {
           <div>{vehicles[index].fuel}</div>
           <div>{vehicles[index].features}</div>
           <button onClick={deleteVehicle}>Scrap Vehicle</button>
-          {/* {updateSection} */}
-          {/* <button onClick={showUp}>Update</button> */}
-          <UpdateVehicle vehicle={vehicles[index]} getVehicles={getVehicles} />
+          {updates ? (
+            <UpdateVehicle
+              vehicle={vehicles[index]}
+              getVehicles={getVehicles}
+              setUpdates={setUpdates}
+            />
+          ) : (
+            <button onClick={() => setUpdates(true)}>Update</button>
+          )}
           <Reviews reviews={reviews} setReviews={setReviews} />
           <NewReview
             vehicles={vehicles}
@@ -92,7 +88,7 @@ const VehicleDeets = ({ backHome }) => {
       ) : (
         <div>Your Garage Is Empty</div>
       )}
-    </>
+    </div>
   )
 }
 export default VehicleDeets
